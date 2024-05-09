@@ -11,7 +11,7 @@ export async function uploadFile({ key, folder, body }) {
     await s3Client.send(
       new PutObjectCommand({
         Bucket: 'devscale',
-        Key: `${folder}/${key}`,
+        Key: `petapp/${folder}/${key}`,
         ContentType: body.type,
         Body: buffer,
       })

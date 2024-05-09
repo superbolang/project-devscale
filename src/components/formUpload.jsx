@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 export const FormUpload = () => {
   const router = useRouter();
   async function handleUpload(formData) {
-    const res = await fetch('/api/upload', {
+    const res = await fetch('/api/v1/upload', {
       method: 'POST',
       body: formData,
     });
