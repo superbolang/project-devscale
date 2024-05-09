@@ -31,7 +31,7 @@ export const LandingPage = () => {
               </a>
             </li>
             <li>
-              <a href='#' className='hover:text-gray-300'>
+              <a href='/auth/login' className='hover:text-gray-300'>
                 Login
               </a>
             </li>
