@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 import { DashboardLayout } from '@/components/dashboardLayout';
 
-export default async function Layout() {
+export default async function Layout({ children }) {
   const cookieStore = cookies();
 
   // 1. Cek apakah ada  token di cookies
@@ -18,7 +18,11 @@ export default async function Layout() {
 
     const decodeData = jwt.decode(token.value);
     console.log(decodeData);
-    return <DashboardLayout isAdmin={decodeData.role === 'ADMIN'} name={decodeData.name} ></DashboardLayout>;
+    return (
+      <DashboardLayout isAdmin={decodeData.role === 'ADMIN'} name={decodeData.name}>
+        {children}
+      </DashboardLayout>
+    );
   } catch (error) {
     console.log('TOKEN TIDAK VALID');
     redirect('/auth/login'); // Login
