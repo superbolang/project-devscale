@@ -6,7 +6,10 @@ export const DashboardLayout = ({ isAdmin, name, children }) => {
     <>
       <nav className='bg-gray-800 p-4'>
         <h1 className='text-white text-2xl mb-2.5'>
-          Welcome {name}, you are logged in as {isAdmin ? 'Admin' : 'User'}
+          <Link href='/dashboard' className=' hover:text-gray-300'>
+            Welcome
+          </Link>{' '}
+          {name}, you are logged in as {isAdmin ? 'Admin' : 'User'}
         </h1>
         <ul className='flex justify-between space-x-4'>
           <div className='flex justify-start space-x-4'>
@@ -16,8 +19,8 @@ export const DashboardLayout = ({ isAdmin, name, children }) => {
               </Link>
             </li>
             <li>
-              <Link href='/dashboard/history' className='text-white hover:text-gray-300'>
-                History
+              <Link href='/dashboard/order' className='text-white hover:text-gray-300'>
+                Order
               </Link>
             </li>
             <li>
@@ -26,11 +29,18 @@ export const DashboardLayout = ({ isAdmin, name, children }) => {
               </Link>
             </li>
             {isAdmin ? (
-              <li>
-                <Link href='/dashboard/user' className='text-white hover:text-gray-300'>
-                  User
-                </Link>
-              </li>
+              <>
+                <li>
+                  <Link href='/dashboard/branch' className='text-white hover:text-gray-300'>
+                    Branch
+                  </Link>
+                </li>
+                <li>
+                  <Link href='/dashboard/user' className='text-white hover:text-gray-300'>
+                    User
+                  </Link>
+                </li>
+              </>
             ) : null}
           </div>
           <li>
