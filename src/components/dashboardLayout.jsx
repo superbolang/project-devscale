@@ -24,9 +24,11 @@ export const DashboardLayout = ({ isAdmin, name, children }) => {
               </Link>
             </li>
             <li>
-              <Link href='/dashboard/profile' className='text-white hover:text-gray-300'>
-                Profile
-              </Link>
+              {!isAdmin ? (
+                <Link href='/dashboard/profile' className='text-white hover:text-gray-300'>
+                  Profile
+                </Link>
+              ) : null}
             </li>
             {isAdmin ? (
               <>
