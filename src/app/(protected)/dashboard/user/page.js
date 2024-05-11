@@ -1,7 +1,7 @@
 import { AllUser } from '@/components/allUser';
 
 export default async function Page() {
-  const res = await fetch('http://localhost:3000/api/v1/user', {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user`, {
     cache: 'no-store',
   });
   const { _, data } = await res.json();
