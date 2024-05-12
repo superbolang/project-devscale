@@ -11,6 +11,8 @@ export const DeleteButton = ({ id }) => {
     const data = await res.json();
     console.log(data);
     router.push('/dashboard/user');
+    router.refresh();
+
   }
 
   return (
