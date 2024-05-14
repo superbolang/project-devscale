@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 
 import React from 'react';
 
-export const LogoutBtn = () => {
+export const LogoutButton = () => {
   const router = useRouter();
   function handleLogout() {
     // delete cookie

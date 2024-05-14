@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { DeleteButton } from '@/components/deleteButton';
-import { AddEditModal } from '@/components/addEditModal';
+import { DeleteButton } from '@/components/DeleteButton';
+import { AddEditModal } from '@/components/AddEditModal';
 
 export default async function Page({ params }) {
   const { id } = params;

@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
-import { DashboardLayout } from '@/components/dashboardLayout';
+import { DashboardLayout } from '@/components/DashboardLayout';
+import { Navbar } from '@/components/Navbar';
 
 export default async function Layout({ children }) {
   const cookieStore = cookies();
@@ -19,9 +20,12 @@ export default async function Layout({ children }) {
     const decodeData = jwt.decode(token.value);
     console.log(decodeData);
     return (
-      <DashboardLayout isAdmin={decodeData.role === 'ADMIN'} name={decodeData.name}>
-        {children}
-      </DashboardLayout>
+      <>
+        <Navbar />
+        <DashboardLayout isAdmin={decodeData.role === 'ADMIN'} name={decodeData.name}>
+          {children}
+        </DashboardLayout>
+      </>
     );
   } catch (error) {
     console.log('TOKEN TIDAK VALID');

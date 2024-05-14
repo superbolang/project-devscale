@@ -1,5 +1,5 @@
 ### register user
-POST http://localhost:3000/api/v1/auth/register
+POST http://localhost:3001/api/v1/register
 
 {
   "name":"Boy Sandra",
@@ -8,7 +8,7 @@ POST http://localhost:3000/api/v1/auth/register
 }
 
 ### login user
-POST http://localhost:3000/api/v1/auth/login
+POST http://localhost:3001/api/v1/login
 
 {
   "email":"boy@email.com",
@@ -16,10 +16,10 @@ POST http://localhost:3000/api/v1/auth/login
 }
 
 ### get all user
-GET http://localhost:3000/api/v1/user
+GET http://localhost:3001/api/v1/user
 
 ### get single user
-GET http://localhost:3000/api/v1/user/
+GET http://localhost:3000/api/v1/user/clvyzkw0r0000pgxud3v02gzo
 
 ### edit user
 

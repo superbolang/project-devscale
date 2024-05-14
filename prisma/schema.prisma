@@ -13,12 +13,13 @@ model User{
   name String
   email String @unique
   password String
-  image String?
   role String @default("USER")
+  image File?
 }
 
 model File{
-  id String @default(cuid()) @unique
+  id String @default(cuid()) @id
   key String
-  author String
+  userId String? @unique
+  user User? @relation(fields: [userId], references: [id])
 }

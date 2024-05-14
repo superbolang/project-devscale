@@ -1,5 +1,5 @@
-import { AllUser } from '@/components/allUser';
-import { AddRegisterModal } from '@/components/addRegisterModal';
+import { AllUser } from '@/components/AllUser';
+import { AddRegisterModal } from '@/components/AddRegisterModal';
 
 export default async function Page() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user`, {
@@ -25,7 +25,7 @@ export default async function Page() {
           </thead>
           <tbody>
             {data.map((user) => {
-              return <AllUser user={user} key={user.id} />;
+              return <AllUser key={user.id} user={user} />;
             })}
           </tbody>
         </table>

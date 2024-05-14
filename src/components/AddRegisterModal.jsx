@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { RegisterModal } from './registerModal';
+import { RegisterModal } from './RegisterModal';
 
 export const AddRegisterModal = () => {
   const [isModalOPen, setIsModalOpen] = useState(false);
