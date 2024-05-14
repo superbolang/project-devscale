@@ -17,7 +17,6 @@ export const RegisterModal = ({ isOpen, onClose }) => {
     onClose();
 
     router.push('/dashboard/user');
-    router.refresh();
   }
 
   if (!isOpen) {
