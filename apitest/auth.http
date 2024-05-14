@@ -8,7 +8,7 @@ POST http://localhost:3001/api/v1/register
 }
 
 ### login user
-POST http://localhost:3001/api/v1/login
+POST http://localhost:3000/api/v1/login
 
 {
   "email":"boy@email.com",
@@ -16,7 +16,7 @@ POST http://localhost:3001/api/v1/login
 }
 
 ### get all user
-GET http://localhost:3001/api/v1/user
+GET http://localhost:3000/api/v1/user
 
 ### get single user
 GET http://localhost:3000/api/v1/user/clvyzkw0r0000pgxud3v02gzo
