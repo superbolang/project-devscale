@@ -48,34 +48,38 @@ export const Navbar = ({ isAdmin, name, children }) => {
                     </>
                   ) : null}
 
-                  <li>
-                    <details>
-                      <summary>Dashboard</summary>
-                      <ul className='p-2 bg-pink-100 rounded-t-none'>
-                        {!isAdmin ? (
-                          <>
+                  {name ? (
+                    <>
+                      <li>
+                        <details>
+                          <summary>Dashboard</summary>
+                          <ul className='p-2 bg-pink-100 rounded-t-none'>
+                            {!isAdmin ? (
+                              <>
+                                <li>
+                                  <a href='/dashboard/myorders'>My Orders</a>
+                                </li>
+                              </>
+                            ) : null}
                             <li>
-                              <a href='/dashboard/myorders'>My Orders</a>
+                              <a href='/dashboard/branch'>Branch</a>
                             </li>
-                          </>
-                        ) : null}
-                        <li>
-                          <a href='/dashboard/branch'>Branch</a>
-                        </li>
 
-                        {isAdmin ? (
-                          <>
-                            <li>
-                              <a href='/dashboard/users'>Users</a>
-                            </li>
-                            <li>
-                              <a href='/dashboard/orders'>Orders</a>
-                            </li>
-                          </>
-                        ) : null}
-                      </ul>
-                    </details>
-                  </li>
+                            {isAdmin ? (
+                              <>
+                                <li>
+                                  <a href='/dashboard/users'>Users</a>
+                                </li>
+                                <li>
+                                  <a href='/dashboard/orders'>Orders</a>
+                                </li>
+                              </>
+                            ) : null}
+                          </ul>
+                        </details>
+                      </li>
+                    </>
+                  ) : null}
                   <li>
                     <details>
                       <summary>Account</summary>
