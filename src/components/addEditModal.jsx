@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { EditModal } from './EditModal';
+import { EditModal } from './editModal';
 
 export const AddEditModal = ({ id }) => {
   const [isModalOPen, setIsModalOpen] = useState(false);

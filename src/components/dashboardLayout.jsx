@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { LogoutButton } from '@/components/LogoutButton';
+import { LogoutBtn } from './logoutButton';
 
 export const DashboardLayout = ({ isAdmin, name, children }) => {
   return (
@@ -47,7 +47,7 @@ export const DashboardLayout = ({ isAdmin, name, children }) => {
           </div>
           <li>
             <Link href='/' className='text-white hover:text-gray-300'>
-              <LogoutButton />
+              <LogoutBtn />
             </Link>
           </li>
         </ul>

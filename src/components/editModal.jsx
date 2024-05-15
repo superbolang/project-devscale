@@ -20,6 +20,8 @@ export const EditModal = ({ id, isOpen, onClose }) => {
     onClose();
 
     router.push('/dashboard/user');
+    router.refresh();
+
   }
 
   if (!isOpen) {

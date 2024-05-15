@@ -1,22 +1,19 @@
 'use client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { DeleteButton } from '@/components/DeleteButton';
-import { FormUpload } from '@/components/FormUpload';
-import { ImgProfile } from '@/components/ImgProfile';
+import { DeleteButton } from '@/components/deleteButton';
 
 export const AllUser = ({ user }) => {
   const router = useRouter();
 
-  function handleView() {
-    router.push(`/dashboard/users/${user.id}`);
+  async function handleView() {
+    router.push(`/dashboard/user/${user.id}`);
   }
 
   return (
     <tr>
       <td className='border px-4 py-2'>
-        <ImgProfile id={user.id} />
-        <FormUpload id={user.id} />
+        <Image src='' alt='Profile Image' className='rounded-full w-20 h-20 object-cover' />
       </td>
       <td className='border px-4 py-2'>{user.name}</td>
       <td className='border px-4 py-2'>{user.email}</td>

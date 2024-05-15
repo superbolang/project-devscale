@@ -1,35 +1,58 @@
-import { AllUser } from '@/components/AllUser';
-import { AddRegisterModal } from '@/components/AddRegisterModal';
-
-export default async function Page() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user`, {
-    cache: 'no-store',
-  });
-  const { _, data } = await res.json();
-  console.log(data);
-
-  return (
-    <>
-      <AddRegisterModal />
-
-      <div className='overflow-x-auto'>
-        <table className='table-auto w-full'>
-          <thead>
-            <tr>
-              <th className='border px-4 py-2'>Image</th>
-              <th className='border px-4 py-2'>Name</th>
-              <th className='border px-4 py-2'>Email</th>
-              <th className='border px-4 py-2'>Role</th>
-              <th className='border px-4 py-2'>Menu</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((user) => {
-              return <AllUser key={user.id} user={user} />;
-            })}
-          </tbody>
-        </table>
-      </div>
-    </>
-  );
+export default function DashboardUser() {
+    return (
+        <div className="my-8">
+            <div className="text-sm breadcrumbs ml-3 mb-3">
+                <ul>
+                    <li><a href="/dashboard">Dashboard</a></li> 
+                    <li><a>User List</a></li> 
+                </ul>
+            </div>
+            <div className="overflow-x-auto h-screen sticky">
+                <table className="table table-xs table-pin-rows table-pin-cols">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <td>Image</td>
+                            <td>Name</td> 
+                            <td>Email</td> 
+                            <td>Role</td> 
+                            <td>Action</td> 
+                            <th></th> 
+                        </tr>
+                    </thead> 
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                              <div className="avatar">
+                                  <div className="w-24 mask mask-squircle">
+                                      <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                  </div>
+                              </div>
+                            </td>
+                            <td>Cy Ganderton</td> 
+                            <td>Email</td> 
+                            <td>Role</td> 
+                            <td>
+                                <a className="btn btn-primary">Show</a>
+                                <a className="btn btn-primary">Edit</a>
+                                <a className="btn btn-secondary">Delete</a>
+                            </td> 
+                        </tr>
+                    </tbody> 
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <td>Image</td>
+                            <td>Name</td> 
+                            <td>Email</td> 
+                            <td>Role</td> 
+                            <td>Action</td> 
+                            <th></th> 
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>  
+        </div>
+    )
 }

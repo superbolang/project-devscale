@@ -5,12 +5,14 @@ export const DeleteButton = ({ id }) => {
   const router = useRouter();
 
   async function handleDelete() {
-    const res = await fetch(`/api/v1/user/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user/${id}`, {
       method: 'DELETE',
     });
     const data = await res.json();
     console.log(data);
     router.push('/dashboard/user');
+    router.refresh();
+
   }
 
   return (
