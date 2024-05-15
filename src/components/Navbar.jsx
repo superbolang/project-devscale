@@ -20,7 +20,7 @@ export const Navbar = ({ isAdmin, name, children }) => {
                 </label>
               </div>
               <div className='flex-1 px-2 mx-2 font-bold text-xl'>
-                <a href='/dashboard'>Pet Care Opp</a>
+                <a href='/dashboard'>Pet Care App</a>
               </div>
               <div className='flex-none hidden lg:block'>
                 <ul className='menu menu-horizontal px-1'>

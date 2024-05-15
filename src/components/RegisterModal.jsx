@@ -8,7 +8,7 @@ export const RegisterModal = ({ isOpen, onClose }) => {
     const email = formData.get('email');
     const password = formData.get('password');
 
-    const res = await fetch('/api/v1/auth/register', {
+    const res = await fetch('/api/v1/register', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
     });
@@ -16,7 +16,8 @@ export const RegisterModal = ({ isOpen, onClose }) => {
     console.log(data);
     onClose();
 
-    router.push('/dashboard/user');
+    router.push('/dashboard/users');
+    router.refresh();
   }
 
   if (!isOpen) {

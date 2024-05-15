@@ -15,6 +15,7 @@ export const AllUser = ({ user }) => {
   return (
     <tr>
       <td className='border px-4 py-2'>
+        {user.id}
         <ImgProfile id={user.id} />
         <FormUpload id={user.id} />
       </td>
