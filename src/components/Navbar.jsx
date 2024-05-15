@@ -3,7 +3,7 @@
 import { LogoutButton } from '@/components/LogoutButton';
 import Link from 'next/link';
 
-export const Navbar = ({ children }) => {
+export const Navbar = ({ isAdmin, name, children }) => {
   return (
     <div>
       <navbar>
@@ -20,46 +20,59 @@ export const Navbar = ({ children }) => {
                 </label>
               </div>
               <div className='flex-1 px-2 mx-2 font-bold text-xl'>
-                <a href='/#home'>Pet Care App</a>
+                <a href='/dashboard'>Pet Care Opp</a>
               </div>
               <div className='flex-none hidden lg:block'>
                 <ul className='menu menu-horizontal px-1'>
                   {/* Navbar menu content here */}
+                  {!name ? (
+                    <>
+                      <li>
+                        <a href='/#home'>Home</a>
+                      </li>
+                      <li>
+                        <a href='/#service-type'>Service</a>
+                      </li>
+                      <li>
+                        <a href='/branch'>Branch</a>
+                      </li>
+                      <li>
+                        <a href='/#review'>Review</a>
+                      </li>
+                      <li>
+                        <a href='/#contact'>Contact</a>
+                      </li>
+                      <li>
+                        <a href='/#faq'>FAQ</a>
+                      </li>
+                    </>
+                  ) : null}
 
-                  <li>
-                    <a href='/#home'>Home</a>
-                  </li>
-                  <li>
-                    <a href='/#service-type'>Service</a>
-                  </li>
-                  <li>
-                    <a href='/branch'>Branch</a>
-                  </li>
-                  <li>
-                    <a href='/#review'>Review</a>
-                  </li>
-                  <li>
-                    <a href='/#contact'>Contact</a>
-                  </li>
-                  <li>
-                    <a href='/#faq'>FAQ</a>
-                  </li>
                   <li>
                     <details>
                       <summary>Dashboard</summary>
                       <ul className='p-2 bg-pink-100 rounded-t-none'>
-                        <li>
-                          <a href='/dashboard/my-orders'>My Orders</a>
-                        </li>
+                        {!isAdmin ? (
+                          <>
+                            <li>
+                              <a href='/dashboard/myorders'>My Orders</a>
+                            </li>
+                          </>
+                        ) : null}
                         <li>
                           <a href='/dashboard/branch'>Branch</a>
                         </li>
-                        <li>
-                          <a href='/dashboard/users'>Users</a>
-                        </li>
-                        <li>
-                          <a href='/dashboard/order'>Orders</a>
-                        </li>
+
+                        {isAdmin ? (
+                          <>
+                            <li>
+                              <a href='/dashboard/users'>Users</a>
+                            </li>
+                            <li>
+                              <a href='/dashboard/orders'>Orders</a>
+                            </li>
+                          </>
+                        ) : null}
                       </ul>
                     </details>
                   </li>
@@ -67,17 +80,27 @@ export const Navbar = ({ children }) => {
                     <details>
                       <summary>Account</summary>
                       <ul className='p-2 bg-pink-100 rounded-t-none'>
-                        <li>
-                          <a href='/register'>Register</a>
-                        </li>
-                        <li>
-                          <a href='/login'>Login</a>
-                        </li>
-                        <li>
-                          <Link href='/'>
-                            <LogoutButton />
-                          </Link>
-                        </li>
+                        {name ? (
+                          <>
+                            <li>
+                              <a href='/dashboard/profile'>Profile</a>
+                            </li>
+                            <li>
+                              <Link href='/'>
+                                <LogoutButton />
+                              </Link>
+                            </li>
+                          </>
+                        ) : (
+                          <>
+                            <li>
+                              <a href='/register'>Register</a>
+                            </li>
+                            <li>
+                              <a href='/login'>Login</a>
+                            </li>
+                          </>
+                        )}
                       </ul>
                     </details>
                   </li>

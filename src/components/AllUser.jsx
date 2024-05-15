@@ -9,7 +9,7 @@ export const AllUser = ({ user }) => {
   const router = useRouter();
 
   function handleView() {
-    router.push(`/dashboard/user/${user.id}`);
+    router.push(`/dashboard/users/${user.id}`);
   }
 
   return (

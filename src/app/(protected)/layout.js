@@ -10,7 +10,7 @@ export default async function Layout({ children }) {
   // 1. Cek apakah ada  token di cookies
   const token = cookieStore.get('token');
   if (!token?.value) {
-    redirect('/auth/login'); // Login
+    redirect('/'); // Login
   }
   // 2. Cek apakah token valid
   try {
@@ -21,14 +21,14 @@ export default async function Layout({ children }) {
     console.log(decodeData);
     return (
       <>
-        <Navbar />
-        <DashboardLayout isAdmin={decodeData.role === 'ADMIN'} name={decodeData.name}>
+        <Navbar>
+          <Navbar isAdmin={decodeData.role === 'ADMIN'} name={decodeData.name} />
           {children}
-        </DashboardLayout>
+        </Navbar>
       </>
     );
   } catch (error) {
     console.log('TOKEN TIDAK VALID');
-    redirect('/auth/login'); // Login
+    redirect('/login'); // Login
   }
 }
