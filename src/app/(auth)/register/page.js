@@ -2,12 +2,9 @@
 
 import AuthComponent from '@/components/AuthComponent';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { Navbar } from '@/components/Navbar';
 
 const Register = () => {
-  const router = useRouter();
-
   return (
     <>
       <Navbar />
