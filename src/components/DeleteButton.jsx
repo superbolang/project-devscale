@@ -15,7 +15,7 @@ export const DeleteButton = ({ id }) => {
   }
 
   return (
-    <button className='bg-orange-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={handleDelete}>
+    <button className='btn btn-secondary mx-2' onClick={handleDelete}>
       Delete
     </button>
   );

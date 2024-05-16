@@ -3,7 +3,7 @@
 import { LogoutButton } from '@/components/LogoutButton';
 import Link from 'next/link';
 
-export const Navbar = ({ isAdmin, name, children }) => {
+export const Navbar = ({ isAdmin, name, children, id }) => {
   return (
     <div>
       <navbar>
@@ -87,7 +87,7 @@ export const Navbar = ({ isAdmin, name, children }) => {
                         {name ? (
                           <>
                             <li>
-                              <a href='/dashboard/profile'>Profile</a>
+                              <a href={`/dashboard/users/${id}`}>Profile</a>
                             </li>
                             <li>
                               <Link href='/'>
