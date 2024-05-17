@@ -33,7 +33,7 @@ export default function DashboardUser() {
                             <td>Cy Ganderton</td> 
                             <td>Email</td> 
                             <td>Role</td> 
-                            <td>
+                            <td className="flex flex-row gap-2"> 
                                 <a className="btn btn-primary">Show</a>
                                 <a className="btn btn-primary">Edit</a>
                                 <a className="btn btn-secondary">Delete</a>

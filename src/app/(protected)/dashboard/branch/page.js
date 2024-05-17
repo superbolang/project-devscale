@@ -1,4 +1,12 @@
+import { ModalBranch } from "@/components/branch/ModalBranch"
+import getConfig from "next/config"
+
+const { serverRuntimeConfig } = getConfig();
+
 export default function DashboardBranch() {
+    const branch = {}
+
+
   return (
       <div className="my-8">
           <div className="text-sm breadcrumbs ml-3 mb-3">
@@ -6,6 +14,10 @@ export default function DashboardBranch() {
                   <li><a href="/dashboard">Dashboard</a></li> 
                   <li><a>Branch List</a></li> 
               </ul>
+          </div>
+          <div>
+            <label htmlFor="add-branch" className="btn mb-3">Add Branch</label>
+            <ModalBranch modalId={"add-branch"} config={serverRuntimeConfig} />
           </div>
           <div className="overflow-x-auto h-screen sticky">
               <table className="table table-xs table-pin-rows table-pin-cols">
@@ -33,9 +45,10 @@ export default function DashboardBranch() {
                                   </div>
                               </div>
                           </td>
-                          <td>
-                              <a className="btn btn-primary">Show</a>
-                              <a className="btn btn-primary">Edit</a>
+                          <td className="flex flex-row gap-2">
+                              <a href={"/branch/branch-slug"} className="btn btn-primary">Show</a>
+                              <label htmlFor="edit-branch" className="btn">Edit</label>
+                              <ModalBranch modalId={"edit-branch"} branch={branch} isEdit={true} config={serverRuntimeConfig} />
                               <a className="btn btn-secondary">Delete</a>
                           </td> 
                       </tr>

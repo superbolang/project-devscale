@@ -53,7 +53,7 @@ export default function DashboardOrder() {
                                     <option>Cancel</option>
                                 </select>
                             </td> 
-                            <td>
+                            <td className="flex flex-row gap-2"> 
                                 <a className="btn btn-primary">Edit</a>
                                 <a className="btn btn-secondary">Delete</a>
                             </td> 

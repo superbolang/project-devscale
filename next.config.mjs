@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   serverRuntimeConfig: {
+    cities: [
+      "Jakarta",
+      "Surabaya"
+    ],
     serviceTypes: [
       {
         id: 1,
