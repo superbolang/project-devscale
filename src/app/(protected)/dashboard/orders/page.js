@@ -62,7 +62,7 @@ export default async function Page() {
                   <option>Cancel</option>
                 </select>
               </td>
-              <td>
+              <td className='flex flex-row gap-2'>
                 <Link href={''} className='btn btn-primary'>
                   Edit
                 </Link>

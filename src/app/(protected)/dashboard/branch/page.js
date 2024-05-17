@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { ModalBranch } from '@/components/ModalBranch';
 
 export default async function Page() {
   return (
@@ -13,6 +14,12 @@ export default async function Page() {
             <Link href={''}>Branch List</Link>
           </li>
         </ul>
+      </div>
+      <div>
+        <label htmlFor='add-branch' className='btn mb-3'>
+          Add Branch
+        </label>
+        <ModalBranch modalId={'add-branch'} config={serverRuntimeConfig} />
       </div>
       <div className='overflow-x-auto h-screen sticky'>
         <table className='table table-xs table-pin-rows table-pin-cols'>
@@ -40,13 +47,14 @@ export default async function Page() {
                   </div>
                 </div>
               </td>
-              <td>
-                <Link href={''} className='btn btn-primary'>
+              <td className='flex flex-row gap-2'>
+                <Link href={'/branch/branch-slug'} className='btn btn-primary'>
                   Show
                 </Link>
-                <Link href={''} className='btn btn-primary'>
+                <label htmlFor='edit-branch' className='btn'>
                   Edit
-                </Link>
+                </label>
+                <ModalBranch modalId={'edit-branch'} branch={branch} isEdit={true} config={serverRuntimeConfig} />
                 <Link href={''} className='btn btn-secondary'>
                   Delete
                 </Link>
