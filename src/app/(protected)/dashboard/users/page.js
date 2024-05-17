@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { DeleteButton } from '@/components/DeleteButton';
 import Link from 'next/link';
+import ModalUser from '@/components/ModalUser';
+
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
@@ -28,6 +30,12 @@ export default async function Page() {
               <Link href={''}>User List</Link>
             </li>
           </ul>
+        </div>
+        <div>
+          <label htmlFor='add-user' className='btn mb-3'>
+            Add User
+          </label>
+          <ModalUser modalId={'add-user'} />
         </div>
         <div className='overflow-x-auto h-screen sticky'>
           <table className='table table-xs table-pin-rows table-pin-cols'>
@@ -58,12 +66,16 @@ export default async function Page() {
                     <td>{user.email}</td>
                     <td>{user.role}</td>
                     <td className='flex flex-row gap-2'>
-                      <Link className='btn btn-primary mx-2' href={`/dashboard/users/${user.id}`}>
+                      <Link className='btn btn-accent mx-1' href={`/dashboard/users/${user.id}`}>
                         Show
                       </Link>
-                      <Link className='btn btn-accent mx-2' href={`/dashboard/profile/${user.id}`}>
+                      <label htmlFor='edit-user' className='btn btn-primary mx-1'>
                         Edit
-                      </Link>
+                      </label>
+                      <ModalUser modalId={'edit-user'} isEdit={true} id={user.id} />
+                      {/* <Link className='btn btn-accent mx-1' href={`/dashboard/profile/${user.id}`}>
+                        Edit
+                      </Link> */}
                       {user.role === 'ADMIN' ? null : <DeleteButton id={user.id} />}
                     </td>
                   </tr>

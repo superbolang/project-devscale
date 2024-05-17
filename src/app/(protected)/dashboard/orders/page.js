@@ -40,7 +40,7 @@ export default async function Page() {
               <td>
                 <div className='avatar'>
                   <div className='w-24 mask mask-squircle'>
-                    <img src='https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' />
+                    <Image src='/images/photo.jpg' alt='' width={300} height={300} />
                   </div>
                 </div>
               </td>
