@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function Page() {
   return (
@@ -6,10 +7,10 @@ export default async function Page() {
       <div className='text-sm breadcrumbs ml-3 mb-3'>
         <ul>
           <li>
-            <a href='/dashboard'>Dashboard</a>
+            <Link href='/dashboard'>Dashboard</Link>
           </li>
           <li>
-            <a>Order List</a>
+            <Link href={''}>Order List</Link>
           </li>
         </ul>
       </div>
@@ -62,8 +63,12 @@ export default async function Page() {
                 </select>
               </td>
               <td>
-                <a className='btn btn-primary'>Edit</a>
-                <a className='btn btn-secondary'>Delete</a>
+                <Link href={''} className='btn btn-primary'>
+                  Edit
+                </Link>
+                <Link href={''} className='btn btn-secondary'>
+                  Delete
+                </Link>
               </td>
             </tr>
           </tbody>

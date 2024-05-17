@@ -20,7 +20,7 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                 </label>
               </div>
               <div className='flex-1 px-2 mx-2 font-bold text-xl'>
-                <a href='/dashboard'>Pet Care App</a>
+                <Link href='/dashboard'>Pet Care App</Link>
               </div>
               <div className='flex-none hidden lg:block'>
                 <ul className='menu menu-horizontal px-1'>
@@ -28,22 +28,22 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                   {!name ? (
                     <>
                       <li>
-                        <a href='/#home'>Home</a>
+                        <Link href='/#home'>Home</Link>
                       </li>
                       <li>
-                        <a href='/#service-type'>Service</a>
+                        <Link href='/#service-type'>Service</Link>
                       </li>
                       <li>
-                        <a href='/branch'>Branch</a>
+                        <Link href='/branch'>Branch</Link>
                       </li>
                       <li>
-                        <a href='/#review'>Review</a>
+                        <Link href='/#review'>Review</Link>
                       </li>
                       <li>
-                        <a href='/#contact'>Contact</a>
+                        <Link href='/#contact'>Contact</Link>
                       </li>
                       <li>
-                        <a href='/#faq'>FAQ</a>
+                        <Link href='/#faq'>FAQ</Link>
                       </li>
                     </>
                   ) : null}
@@ -57,21 +57,21 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                             {!isAdmin ? (
                               <>
                                 <li>
-                                  <a href='/dashboard/myorders'>My Orders</a>
+                                  <Link href='/dashboard/myorders'>My Orders</Link>
                                 </li>
                               </>
                             ) : null}
                             <li>
-                              <a href='/dashboard/branch'>Branch</a>
+                              <Link href='/dashboard/branch'>Branch</Link>
                             </li>
 
                             {isAdmin ? (
                               <>
                                 <li>
-                                  <a href='/dashboard/users'>Users</a>
+                                  <Link href='/dashboard/users'>Users</Link>
                                 </li>
                                 <li>
-                                  <a href='/dashboard/orders'>Orders</a>
+                                  <Link href='/dashboard/orders'>Orders</Link>
                                 </li>
                               </>
                             ) : null}
@@ -87,7 +87,7 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                         {name ? (
                           <>
                             <li>
-                              <a href={`/dashboard/users/${id}`}>Profile</a>
+                              <Link href={`/dashboard/users/${id}`}>Profile</Link>
                             </li>
                             <li>
                               <Link href='/'>
@@ -98,10 +98,10 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                         ) : (
                           <>
                             <li>
-                              <a href='/register'>Register</a>
+                              <Link href='/register'>Register</Link>
                             </li>
                             <li>
-                              <a href='/login'>Login</a>
+                              <Link href='/login'>Login</Link>
                             </li>
                           </>
                         )}

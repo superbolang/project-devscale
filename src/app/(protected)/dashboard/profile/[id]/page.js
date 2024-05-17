@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function Page({ params }) {
@@ -29,10 +30,10 @@ export default function Page({ params }) {
       <div className='text-sm breadcrumbs ml-2'>
         <ul>
           <li>
-            <a href='/dashboard'>Dashboard</a>
+            <Link href='/dashboard'>Dashboard</Link>
           </li>
           <li>
-            <a>Profile</a>
+            <Link href={''}>Edit Profile</Link>
           </li>
         </ul>
       </div>

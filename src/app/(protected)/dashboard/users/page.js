@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { DeleteButton } from '@/components/DeleteButton';
+import Link from 'next/link';
 
 export default async function Page() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user`, {
@@ -14,10 +15,10 @@ export default async function Page() {
         <div className='text-sm breadcrumbs ml-3 mb-3'>
           <ul>
             <li>
-              <a href='/dashboard'>Dashboard</a>
+              <Link href='/dashboard'>Dashboard</Link>
             </li>
             <li>
-              <a>User List</a>
+              <Link href={''}>User List</Link>
             </li>
           </ul>
         </div>
@@ -50,12 +51,12 @@ export default async function Page() {
                     <td>{user.email}</td>
                     <td>{user.role}</td>
                     <td>
-                      <a className='btn btn-primary mx-2' href={`/dashboard/users/${user.id}`}>
+                      <Link className='btn btn-primary mx-2' href={`/dashboard/users/${user.id}`}>
                         Show
-                      </a>
-                      <a className='btn btn-accent mx-2' href={`/dashboard/profile/${user.id}`}>
+                      </Link>
+                      <Link className='btn btn-accent mx-2' href={`/dashboard/profile/${user.id}`}>
                         Edit
-                      </a>
+                      </Link>
                       {user.role === 'ADMIN' ? null : <DeleteButton id={user.id} />}
                     </td>
                   </tr>

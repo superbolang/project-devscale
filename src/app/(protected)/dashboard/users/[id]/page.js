@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function Page({ params }) {
   const { id } = params;
@@ -73,8 +74,8 @@ export default async function Page({ params }) {
                       </select>
                     </td>
                     <td>
-                      <a className='btn btn-primary'>Edit</a>
-                      <a className='btn btn-secondary'>Delete</a>
+                      <Link href={''} className='btn btn-primary'>Edit</Link>
+                      <Link href={''} className='btn btn-secondary'>Delete</Link>
                     </td>
                   </tr>
                 </tbody>
