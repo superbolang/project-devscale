@@ -1,13 +1,20 @@
 import Image from 'next/image';
 import { DeleteButton } from '@/components/DeleteButton';
 import Link from 'next/link';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
-export default async function Page() {
+async function getData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user`, {
     cache: 'no-store',
   });
   const { _, data } = await res.json();
   console.log(data);
+  return data;
+}
+
+export default async function Page() {
+  const data = await getData();
 
   return (
     <>
@@ -50,7 +57,7 @@ export default async function Page() {
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>{user.role}</td>
-                    <td>
+                    <td className='flex flex-row gap-2'>
                       <Link className='btn btn-primary mx-2' href={`/dashboard/users/${user.id}`}>
                         Show
                       </Link>
