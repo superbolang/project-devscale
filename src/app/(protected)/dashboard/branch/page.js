@@ -1,8 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ModalBranch } from '@/components/ModalBranch';
+import ModalBranch from '@/components/ModalBranch';
+import getConfig from 'next/config';
 
-export default async function Page() {
+const { serverRuntimeConfig } = getConfig();
+
+export default function Page() {
+  const branch = {};
   return (
     <div className='my-8'>
       <div className='text-sm breadcrumbs ml-3 mb-3'>
@@ -48,10 +52,10 @@ export default async function Page() {
                 </div>
               </td>
               <td className='flex flex-row gap-2'>
-                <Link href={'/branch/branch-slug'} className='btn btn-primary'>
+                <Link href={'/branch/branch-slug'} className='btn btn-accent mx-1'>
                   Show
                 </Link>
-                <label htmlFor='edit-branch' className='btn'>
+                <label htmlFor='edit-branch' className='btn btn-primary mx-1'>
                   Edit
                 </label>
                 <ModalBranch modalId={'edit-branch'} branch={branch} isEdit={true} config={serverRuntimeConfig} />
