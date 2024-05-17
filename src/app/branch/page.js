@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/Navbar';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Page() {
   return (
@@ -36,10 +37,10 @@ export default function Page() {
             <div className='text-sm breadcrumbs ml-3'>
               <ul>
                 <li>
-                  <a href='/#home'>Home</a>
+                  <Link href='/#home'>Home</Link>
                 </li>
                 <li>
-                  <a>Branch</a>
+                  <Link href={''}>Branch</Link>
                 </li>
               </ul>
             </div>
@@ -54,9 +55,9 @@ export default function Page() {
                   <h2 className='card-title'>Branch Name</h2>
                   <p>City</p>
                   <div className='card-actions justify-end'>
-                    <a className='btn btn-primary' href='/branch/branch-slug'>
+                    <Link className='btn btn-primary' href='/branch/branch-slug'>
                       More
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

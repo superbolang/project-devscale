@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const LandingPage = () => {
   const faqs = [
@@ -71,9 +72,9 @@ export const LandingPage = () => {
             <div>
               <h1 className='text-3xl font-bold'>Tailored Stays for Every Fur-tastic Friend</h1>
               <p className='py-6'>Welcome to our pet hotel, where personalized care awaits every wagging tail, purring cat, and binky-hopping rabbit! 🐾✨.</p>
-              <a className='btn btn-primary' href='/#service-type'>
+              <Link className='btn btn-primary' href='/#service-type'>
                 Lets take a look ^-^{' '}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

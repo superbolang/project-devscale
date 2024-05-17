@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function Page() {
   return (
@@ -6,10 +7,10 @@ export default async function Page() {
       <div className='text-sm breadcrumbs'>
         <ul>
           <li>
-            <a>Dashboard</a>
+            <Link href={''}>Dashboard</Link>
           </li>
           <li>
-            <a>My Order</a>
+            <Link href={''}>My Order</Link>
           </li>
         </ul>
       </div>
