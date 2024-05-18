@@ -87,7 +87,7 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                         {name ? (
                           <>
                             <li>
-                              <Link href={`/dashboard/users/${id}`}>Profile</Link>
+                              <Link href={`/dashboard/profile/${id}`}>Profile</Link>
                             </li>
                             <li>
                               <Link href='/'>

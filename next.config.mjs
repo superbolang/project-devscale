@@ -1,6 +1,4 @@
 const nextConfig = {
-  serverRuntimeConfig: {
-  },
   images: {
     remotePatterns: [
       {
