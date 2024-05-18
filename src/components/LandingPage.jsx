@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export const LandingPage = () => {
+export const LandingPage = ({config}) => {
   const faqs = [
     {
       question: 'How ?',
@@ -14,54 +14,6 @@ export const LandingPage = () => {
       answer: 'yes',
     },
   ];
-
-  const services = {
-    serviceTypes: [
-      {
-        id: 1,
-        title: 'Boarding Accommodations',
-        description: 'Secure and comfortable boarding options for pets of all sizes. Whether it’s a spacious suite or a cozy den, your guests will feel right at home',
-        image: '/images/Boarding-Accommodations.jpg',
-      },
-      {
-        id: 2,
-        title: 'Feeding and Hydration',
-        description: 'Prioritize the dietary needs of each pet. Offer high-quality meals and ensure fresh water is always available',
-        image: '/images/Feeding-and-Hydration.jpg',
-      },
-      {
-        id: 3,
-        title: 'Exercise and Playtime',
-        description: 'Regular play sessions and outdoor activities keep pets active and happy. Consider playgroups, walks, and even agility courses',
-        image: '/images/Exercise-and-Playtime.jpg',
-      },
-      {
-        title: 'Grooming Services',
-        description: 'Pamper pets with baths, brushing, nail trims, and fur styling. A well-groomed pet is a happy pet',
-        image: '/images/Grooming-Services.jpg',
-      },
-    ],
-    packages: [
-      {
-        id: 1,
-        name: 'Basic',
-        price: 50000,
-        includeService: ['Boarding Accommodations', 'Feeding and Hydration'],
-      },
-      {
-        id: 2,
-        name: 'Extra',
-        price: 750000,
-        includeService: ['Boarding Accommodations', 'Feeding and Hydration', 'Exercise and Playtime'],
-      },
-      {
-        id: 3,
-        name: 'Super',
-        price: 150000,
-        includeService: ['Boarding Accommodations', 'Feeding and Hydration', 'Exercise and Playtime', 'Grooming Services'],
-      },
-    ],
-  };
 
   return (
     <div>
@@ -86,7 +38,7 @@ export const LandingPage = () => {
         </div>
 
         <div className='flex flex-wrap gap-4 justify-center'>
-          {services.serviceTypes.map(function (service, index) {
+          {config.serviceTypes.map(function (service, index) {
             return (
               <div key={index} className='card card-compact w-72 bg-base-100 shadow-xl'>
                 <figure>
@@ -101,6 +53,32 @@ export const LandingPage = () => {
           })}
         </div>
       </section>
+
+        <section id="pacakage">
+          <div className="divider"><h2 className="text-2xl font-bold">Our Packages</h2></div>
+          <div className="flex flex-wrap gap-4 justify-center">
+            {config.servicePackages.map(function(pckg, index) {
+              return (
+                <div key={index} className="card card-compact w-72 bg-base-100 shadow-xl">
+                   <figure>
+                    <Image src={pckg.image} alt={pckg.name} width={300} height={300} />
+                </figure>
+                  <div className="card-body">
+                        <h2 className="card-title">{pckg.name}</h2>
+                        {pckg.includeService.map(function(service, index) {
+                          return (
+                            <div key={index} className="badge badge-outline">{service}</div>
+                          )
+                        })}
+                        <p className="font-bold text-2xl">IDR {pckg.price}</p>
+                      </div>
+
+
+                </div>
+              )
+            })}
+          </div>
+        </section>
 
       <section id='review' className='bg-base-200 h-fit'>
         <div className='divider'>
