@@ -102,7 +102,7 @@ export default function Page() {
                 </div>
               </td>
               <td className='flex flex-row gap-2'>
-                <Link href={'/branch/branch-slug'} className='btn btn-accent mx-1'>
+                <Link href={'/dashboard/branch/id'} className='btn btn-accent mx-1'>
                   Show
                 </Link>
                 <label htmlFor='edit-branch' className='btn btn-primary mx-1'>

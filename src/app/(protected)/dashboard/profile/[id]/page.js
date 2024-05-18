@@ -1,19 +1,27 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
-export default function Page({ params }) {
+async function getData() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user`, {
+    cache: 'no-store',
+  });
+  const { _, data } = await res.json();
+  return data;
+}
+
+export default async function Page({ params }) {
+  const users = await getData();
   const { id } = params;
-  const router = useRouter();
+  const user = users.filter((user) => user.id == id);
 
   async function handleUpdate(formData) {
+    'use server';
     const name = formData.get('name');
     const email = formData.get('email');
     const password = formData.get('password');
 
-    const res = await fetch(`/api/v1/user/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -22,9 +30,9 @@ export default function Page({ params }) {
     });
     const data = await res.json();
     console.log(data);
-    router.push('/dashboard/users');
-    router.refresh();
+    redirect('/dashboard');
   }
+
   return (
     <div>
       <div className='text-sm breadcrumbs ml-2'>
@@ -47,14 +55,14 @@ export default function Page({ params }) {
           <label className='label'>
             <span className='label-text'>Name</span>
           </label>
-          <input type='text' name='name' placeholder='name' className='input input-bordered' required />
+          <input type='text' name='name' placeholder={user[0].name} className='input input-bordered' required />
         </div>
 
         <div className='form-control'>
           <label className='label'>
             <span className='label-text'>Email</span>
           </label>
-          <input type='email' name='email' placeholder='email' className='input input-bordered' />
+          <input type='email' name='email' placeholder={user[0].email} className='input input-bordered' required />
         </div>
         <div className='form-control'>
           <label className='label'>

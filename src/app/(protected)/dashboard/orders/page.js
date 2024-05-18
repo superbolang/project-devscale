@@ -1,3 +1,4 @@
+import ModalOrder from '@/components/ModalOrder';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -13,6 +14,12 @@ export default async function Page() {
             <Link href={''}>Order List</Link>
           </li>
         </ul>
+      </div>
+      <div>
+        <label htmlFor='book-order' className='btn mb-3'>
+          Add Order
+        </label>
+        <ModalOrder modalId={'book-order'} />
       </div>
       <div className='overflow-x-auto h-screen sticky'>
         <table className='table table-xs table-pin-rows table-pin-cols'>
@@ -63,9 +70,10 @@ export default async function Page() {
                 </select>
               </td>
               <td className='flex flex-row gap-2'>
-                <Link href={''} className='btn btn-primary'>
+                <label htmlFor='edit-user' className='btn btn-primary mx-1'>
                   Edit
-                </Link>
+                </label>
+                <ModalOrder modalId={'edit-order'} isEdit={true} />
                 <Link href={''} className='btn btn-secondary'>
                   Delete
                 </Link>
