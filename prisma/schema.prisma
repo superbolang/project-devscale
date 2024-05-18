@@ -14,12 +14,10 @@ model User{
   email String @unique
   password String
   role String @default("USER")
-  image File?
+  image String?
 }
 
 model File{
   id String @default(cuid()) @id
   key String
-  userId String? @unique
-  user User? @relation(fields: [userId], references: [id])
 }

@@ -74,8 +74,12 @@ export default async function Page({ params }) {
                       </select>
                     </td>
                     <td>
-                      <Link href={''} className='btn btn-primary'>Edit</Link>
-                      <Link href={''} className='btn btn-secondary'>Delete</Link>
+                      <Link href={''} className='btn btn-primary'>
+                        Edit
+                      </Link>
+                      <Link href={''} className='btn btn-secondary'>
+                        Delete
+                      </Link>
                     </td>
                   </tr>
                 </tbody>

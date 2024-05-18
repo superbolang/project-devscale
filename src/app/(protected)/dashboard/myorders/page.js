@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import ModalOrder from '@/components/ModalOrder';
 
 export default async function Page() {
   return (
@@ -7,12 +8,19 @@ export default async function Page() {
       <div className='text-sm breadcrumbs'>
         <ul>
           <li>
-            <Link href={''}>Dashboard</Link>
+            <Link href={'/dashboard'}>Dashboard</Link>
           </li>
           <li>
             <Link href={''}>My Order</Link>
           </li>
         </ul>
+      </div>
+
+      <div>
+        <label htmlFor='book-order' className='btn mb-3'>
+          Add Order
+        </label>
+        <ModalOrder modalId={'book-order'} />
       </div>
 
       <h1 className='ml-3 text-lg '>My Order</h1>

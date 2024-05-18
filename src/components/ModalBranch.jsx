@@ -38,11 +38,11 @@ export default function ModalBranch({ isEdit, modalId, branch, config }) {
               <div className='label'>
                 <span className='label-text'>Upload Image</span>
               </div>
-              {isEdit ? <Image src={undefined} width={100} height={100} alt='' /> : undefined}
+              {isEdit ? <Image className='mask mask-squircle' src='/images/photo.jpg' width={100} height={100} alt='' /> : undefined}
               <input type='file' name='branch_image' className='file-input file-input-bordered w-full' />
             </label>
             <div className='modal-action'>
-              <button className='btn btn-primary'>Save</button>
+              <button className='btn btn-primary'>{isEdit ? 'Update Branch' : 'Add Branch'}</button>
               <label htmlFor={modalId} className='btn'>
                 Close
               </label>

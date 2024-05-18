@@ -69,14 +69,19 @@ export default async function Page() {
                       <Link className='btn btn-accent mx-1' href={`/dashboard/users/${user.id}`}>
                         Show
                       </Link>
-                      <label htmlFor='edit-user' className='btn btn-primary mx-1'>
-                        Edit
-                      </label>
-                      <ModalUser modalId={'edit-user'} isEdit={true} id={user.id} />
+
                       {/* <Link className='btn btn-accent mx-1' href={`/dashboard/profile/${user.id}`}>
                         Edit
                       </Link> */}
-                      {user.role === 'ADMIN' ? null : <DeleteButton id={user.id} />}
+                      {user.role === 'ADMIN' ? null : (
+                        <>
+                          <label htmlFor='edit-user' className='btn btn-primary mx-1'>
+                            Edit
+                          </label>
+                          <ModalUser modalId={'edit-user'} isEdit={true} id={user.id} />
+                          <DeleteButton id={user.id} />
+                        </>
+                      )}
                     </td>
                   </tr>
                 );
