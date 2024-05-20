@@ -1,8 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+async function getImage() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/files/`, {
+    cache: 'no-store',
+  });
+  const { data } = await res.json();
+  // console.log(data);
+  return data;
+}
+
 export default async function Page({ params }) {
+  const images = await getImage();
   const { id } = params;
+  const publicUrl = 'https://pub-b4d8bce428ce4efaaa2645805a673293.r2.dev/devscale/petapp';
+
+  let src;
+  const item = images.filter((item) => item.id == id);
+  item.length === 0 ? (src = '/images/photo.jpg') : (src = `${publicUrl}/${item[0].id}/${item[0].key}`);
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user/${id}`, {
     cache: 'no-store',
   });
@@ -13,7 +29,7 @@ export default async function Page({ params }) {
     <div className='flex flex-col'>
       <div className='basis-1 card card-side bg-base-100 shadow-xl '>
         <figure>
-          <Image src='/images/photo.jpg' alt='Movie' width={300} height={300} />
+          <Image src={src} alt='Movie' width={300} height={300} />
         </figure>
         <div className='card-body'>
           <h2 className='card-title'>{data.name}</h2>

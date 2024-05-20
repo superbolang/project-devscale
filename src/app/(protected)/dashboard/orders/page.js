@@ -8,7 +8,7 @@ export default async function Page() {
       <div className='text-sm breadcrumbs ml-3 mb-3'>
         <ul>
           <li>
-            <Link href='/dashboard'>Dashboard</Link>
+            <Link href={'/dashboard'}>Dashboard</Link>
           </li>
           <li>
             <Link href={''}>Order List</Link>
@@ -70,6 +70,9 @@ export default async function Page() {
                 </select>
               </td>
               <td className='flex flex-row gap-2'>
+                <label htmlFor='edit-user' className='btn btn-accent mx-1'>
+                  Set Status
+                </label>
                 <label htmlFor='edit-user' className='btn btn-primary mx-1'>
                   Edit
                 </label>

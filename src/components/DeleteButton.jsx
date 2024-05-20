@@ -10,6 +10,10 @@ export const DeleteButton = ({ id }) => {
     });
     const data = await res.json();
     console.log(data);
+
+    await fetch(`/api/v1/files/${id}`, {
+      method: 'DELETE',
+    });
     router.push('/dashboard/users');
     router.refresh();
   }

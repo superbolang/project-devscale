@@ -4,8 +4,8 @@ import ModalOrder from '@/components/ModalOrder';
 
 export default async function Page() {
   return (
-    <div className='m-3'>
-      <div className='text-sm breadcrumbs'>
+    <div className='my-8'>
+      <div className='text-sm breadcrumbs ml-3 mb-3'>
         <ul>
           <li>
             <Link href={'/dashboard'}>Dashboard</Link>
@@ -23,10 +23,10 @@ export default async function Page() {
         <ModalOrder modalId={'book-order'} />
       </div>
 
-      <h1 className='ml-3 text-lg '>My Order</h1>
+      {/* <h1 className='ml-3 text-lg '>My Order</h1> */}
       <div className='card card-side bg-base-100 shadow-xl mt-3'>
         <figure>
-          <Image src='/images/photo.jpg' alt='Movie' width={50} height={50} />
+          <Image src='/images/photo.jpg' alt='Movie' width={300} height={300} />
         </figure>
         <div className='card-body'>
           <ul>
@@ -42,7 +42,19 @@ export default async function Page() {
               <div className='badge badge-secondary ml-1'>On Procces</div>
               <div className='badge badge-accent ml-1'>Complete</div>
             </li>
-            <li>Special Treatment : </li>
+            <li>
+              Special Treatment : <textarea className='textarea textarea-bordered h-24 w-full' name='special_treatment' placeholder='Let us know'></textarea>
+            </li>
+
+            <li className='flex flex-row gap-2'>
+              <label htmlFor='edit-user' className='btn btn-primary mx-1'>
+                Edit
+              </label>
+              <ModalOrder modalId={'edit-order'} isEdit={true} />
+              <Link href={''} className='btn btn-secondary'>
+                Delete
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
