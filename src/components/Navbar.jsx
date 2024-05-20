@@ -20,7 +20,7 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                 </label>
               </div>
               <div className='flex-1 px-2 mx-2 font-bold text-xl'>
-                <Link href='/dashboard'>Welcome Back {name}</Link>
+                <Link href='/dashboard'>{name ? `Welcome Back ${name}` : 'Pet Care App'}</Link>
               </div>
               <div className='flex-none hidden lg:block'>
                 <ul className='menu menu-horizontal px-1'>

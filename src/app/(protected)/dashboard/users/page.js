@@ -3,20 +3,32 @@ import { DeleteButton } from '@/components/DeleteButton';
 import Link from 'next/link';
 import ModalUser from '@/components/ModalUser';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// export const dynamic = 'force-dynamic';
+// export const revalidate = 0;
+
+async function getImage() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/files/`, {
+    cache: 'no-store',
+  });
+  const { data } = await res.json();
+  // console.log(data);
+  return data;
+}
 
 async function getData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user`, {
     cache: 'no-store',
   });
   const { _, data } = await res.json();
-  console.log(data);
+  // console.log(data);
   return data;
 }
 
 export default async function Page() {
   const data = await getData();
+  const images = await getImage();
+  let src;
+  const publicUrl = 'https://pub-b4d8bce428ce4efaaa2645805a673293.r2.dev/devscale/petapp';
 
   return (
     <>
@@ -52,13 +64,18 @@ export default async function Page() {
             </thead>
             <tbody>
               {data.map((user) => {
+                const item = images.filter((item) => item.id == user.id);
+                item.length === 0 ? (src = '/images/photo.jpg') : (src = `${publicUrl}/${item[0].id}/${item[0].key}`);
+                // console.log(item);
+                // console.log(user.id);
+
                 return (
                   <tr key={user.id}>
                     <td></td>
                     <td>
                       <div className='avatar'>
                         <div className='w-24 mask mask-squircle'>
-                          <Image src='/images/photo.jpg' alt='' width={50} height={50} />
+                          <Image src={src} alt='Movie' width={50} height={50} />
                         </div>
                       </div>
                     </td>
@@ -69,16 +86,12 @@ export default async function Page() {
                       <Link className='btn btn-accent mx-1' href={`/dashboard/users/${user.id}`}>
                         Show
                       </Link>
-
-                      {/* <Link className='btn btn-accent mx-1' href={`/dashboard/profile/${user.id}`}>
-                        Edit
-                      </Link> */}
                       {user.role === 'ADMIN' ? null : (
                         <>
                           <label htmlFor='edit-user' className='btn btn-primary mx-1'>
                             Edit
                           </label>
-                          <ModalUser modalId={'edit-user'} isEdit={true} id={user.id} />
+                          <ModalUser modalId={'edit-user'} isEdit={true} id={`${user.id}`} />
                           <DeleteButton id={user.id} />
                         </>
                       )}
