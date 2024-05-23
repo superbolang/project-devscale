@@ -91,8 +91,8 @@ export default async function Page() {
                           <label htmlFor='edit-user' className='btn btn-primary mx-1'>
                             Edit
                           </label>
-                          <ModalUser modalId={'edit-user'} isEdit={true} id={`${user.id}`} />
-                          <DeleteButton id={user.id} />
+                          <ModalUser modalId={'edit-user'} isEdit={true} id={user.id} />
+                          <DeleteButton id={user.id} type={user}/>
                         </>
                       )}
                     </td>

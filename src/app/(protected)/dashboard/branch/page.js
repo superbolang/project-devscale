@@ -1,20 +1,23 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import ModalBranch from '@/components/ModalBranch';
+import { DeleteButton } from '@/components/DeleteButton';
 
-async function getData() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user`, {
+async function getBranch() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/branch`, {
     cache: 'no-store',
   });
   const { _, data } = await res.json();
   return data;
 }
 
-export default function Page() {
-  const branch = {};
+export default async function Page() {
+  const branches = await getBranch();
+  // console.log('Daftar branch :', branches);
 
   const serverRuntimeConfig = {
-    cities: ['Jakarta', 'Surabaya'],
+    cities: ['Jakarta', 'Surabaya', 'Semarang'],
+    pets: ['Dog, Cat, Rabbit', 'Dog, Rabbit', 'Dog, Cat', 'Rabbit, Cat', 'Dog', 'Cat', 'Rabbit'],
   };
 
   return (
@@ -43,49 +46,34 @@ export default function Page() {
               <td>Branch Name</td>
               <td>City</td>
               <td>Address</td>
-              <td>Branch Image</td>
+              <td>Type of pets</td>
               <td>Action</td>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Quality Control Specialist</td>
-              <td>
-                <div className='avatar'>
-                  <div className='w-24 mask mask-squircle'>
-                    <Image src='/images/photo.jpg' alt='' width={50} height={50} />
-                  </div>
-                </div>
-              </td>
-              <td className='flex flex-row gap-2'>
-                <Link href={'/dashboard/branch/id'} className='btn btn-accent mx-1'>
-                  Show
-                </Link>
-                <label htmlFor='edit-branch' className='btn btn-primary mx-1'>
-                  Edit
-                </label>
-                <ModalBranch modalId={'edit-branch'} branch={branch} isEdit={true} config={serverRuntimeConfig} />
-                <Link href={''} className='btn btn-secondary'>
-                  Delete
-                </Link>
-              </td>
-            </tr>
+            {branches.map((branch) => {
+              return (
+                <tr key={branch.id}>
+                  <th></th>
+                  <td>{branch.branchName}</td>
+                  <td>{branch.branchCity}</td>
+                  <td>{branch.branchAddress}</td>
+                  <td>{branch.branchPets}</td>
+                  <td className='flex flex-row gap-2'>
+                    {/* <Link href={`/dashboard/branch/${branch.id}`} className='btn btn-accent mx-1'>
+                      Show
+                    </Link> */}
+                    <label htmlFor='edit-branch' className='btn btn-primary mx-1'>
+                      Edit
+                    </label>
+                    <ModalBranch modalId={'edit-branch'} branch={branch.id} isEdit={true} config={serverRuntimeConfig} />
+                    <DeleteButton id={branch.id} type={'branch'} />
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
-          <tfoot>
-            <tr>
-              <th></th>
-              <td>Branch Name</td>
-              <td>City</td>
-              <td>Address</td>
-              <td>Branch Image</td>
-              <td>Action</td>
-              <th></th>
-            </tr>
-          </tfoot>
         </table>
       </div>
     </div>

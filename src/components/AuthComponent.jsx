@@ -14,9 +14,8 @@ export default function AuthComponent({ isLogin }) {
     });
     const data = await res.json();
     console.log(data);
-
-    // Checking
     router.push('/dashboard');
+    router.refresh();
   }
 
   async function handleRegister(formData) {

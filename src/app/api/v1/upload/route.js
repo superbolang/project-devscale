@@ -12,7 +12,6 @@ export async function POST(req) {
   await uploadFile({ key: file.name, folder: id, body: file });
 
   // Insert to or update DB
-
   await prisma.file.upsert({
     where: {
       id,
@@ -21,6 +20,7 @@ export async function POST(req) {
       key: file.name,
     },
     create: {
+      id,
       key: file.name,
     },
   });
