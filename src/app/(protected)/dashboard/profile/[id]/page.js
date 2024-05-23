@@ -39,7 +39,6 @@ export default async function Page({ params }) {
     const name = formData.get('name');
     const email = formData.get('email');
     const password = formData.get('password');
-    const password2 = formData.get('password2');
 
     await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user/${id}`, {
       method: 'PATCH',

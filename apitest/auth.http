@@ -1,5 +1,5 @@
 ### register user
-POST http://localhost:3001/api/v1/register
+POST http://localhost:3000/api/v1/register
 
 {
   "name":"Boy Sandra",
@@ -20,7 +20,3 @@ GET http://localhost:3000/api/v1/user
 
 ### get single user
 GET http://localhost:3000/api/v1/user/clvyzkw0r0000pgxud3v02gzo
-
-### edit user
-
-### delete user

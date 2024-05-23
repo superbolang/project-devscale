@@ -18,28 +18,24 @@ async function getImage() {
 }
 
 export default async function ModalUser({ isEdit, modalId, id }) {
-  const data = await getData();
+  // const data = await getData();
   const images = await getImage();
 
-  console.log(isEdit);
-  console.log(modalId);
-  console.log(id);
+  const user = await getData();
 
-  const user = data.filter((item) => item.id == id);
+  // console.log('ini user single', user[2]);
+
+  // const user = data.filter((item) => item.id == id);
   const item = images.filter((item) => item.id == id);
   let src;
+  // console.log('ini adalah id dari prop :', id);
+  // console.log(`Ini adalah id dari user : ${user[0].id}`);
+  // console.log('Ini adalah item ', item);
+  // const uid = `${user[0].id}`;
+  // console.log('Ini id dari user', uid);
+
   const publicUrl = 'https://pub-b4d8bce428ce4efaaa2645805a673293.r2.dev/devscale/petapp';
   item.length === 0 ? (src = '/images/photo.jpg') : (src = `${publicUrl}/${item[0].id}/${item[0].key}`);
-
-  // data.map((user) => {
-  //   console.log(user);
-  //   const item = images.filter((item) => item.id == user.id);
-  //   console.log(item);
-  //   return { user, data };
-  // });
-
-  // console.log(user);
-  // console.log(item);
 
   async function handleRegister(formData) {
     'use server';
@@ -88,7 +84,7 @@ export default async function ModalUser({ isEdit, modalId, id }) {
       <div className='modal' role='dialog'>
         <div className='modal-box'>
           <form action={isEdit ? handleUpdate : handleRegister}>
-            <input type='text' name='id' value={isEdit ? user[0].name : ''}></input>
+            <input type='hidden' name='id' value={id} className='w-full' />
             <label className='form-control w-full'>
               <div className='label'>
                 <span className='label-text'>Name</span>

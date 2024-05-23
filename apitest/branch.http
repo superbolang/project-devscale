@@ -1,0 +1,28 @@
+### create branch
+POST http://localhost:3000/api/v1/branch
+
+{
+  "branchName":"Semarang 1",
+  "branchCity":"Semarang",
+  "branchAddress":"Jalan Pramuka Nomor 1",
+  "pets": "Dog, Cat, Rabbit"
+}
+
+### get al branch
+GET http://localhost:3000/api/v1/branch
+
+### get single branch
+GET http://localhost:3000/api/v1/branch/Z6-xYrHFvn7HyPLdL_ng6
+
+### delete  branch
+DELETE http://localhost:3000/api/v1/branch/Z6-xYrHFvn7HyPLdL_ng6
+
+### patch  branch
+PATCH http://localhost:3000/api/v1/branch/-dzEek4MTKnjBmuCzJrhx
+
+{
+  "branchName":"Jakarta 2",
+  "branchCity":"Jakarta Sunda",
+  "branchAddress":"Jalan Pramuka Nomor 1",
+  "pets": "Dog, Cat"
+}
