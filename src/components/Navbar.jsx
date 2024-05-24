@@ -43,7 +43,7 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                   <li>
                     <Link href='/#faq'>FAQ</Link>
                   </li>
-          
+
                   {name ? (
                     <>
                       <li>
@@ -53,7 +53,14 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                             {!isAdmin ? (
                               <>
                                 <li>
-                                  <Link href='/dashboard/myorders'>My Orders</Link>
+                                  <Link
+                                    href={{
+                                      pathname: '/dashboard/myorders',
+                                      query: { id: `${id}` },
+                                    }}
+                                  >
+                                    My Orders
+                                  </Link>
                                 </li>
                               </>
                             ) : null}
@@ -103,7 +110,7 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
               </div>
             </div>
             {/* Page content here */}
-            <div className='mt-14'>{children}</div>
+            <div className='mt-5'>{children}</div>
           </div>
         </div>
       </navbar>

@@ -13,13 +13,26 @@ async function getBranch() {
   return data;
 }
 
-export default async function Page() {
+async function getUser() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user`, {
+    cache: 'no-store',
+  });
+  const { _, data } = await res.json();
+  return data;
+}
+
+Page.getInitialProps = ({ query: { id } }) => {
+  return { id };
+};
+
+export default async function Page({ searchParams }) {
+  const userId = searchParams.id;
   const branches = await getBranch();
-  // console.log('Daftar branch :', branches);
+
 
   const config = {
-    cities: ['JAKARTA', 'SURABAYA', 'SEMARANG'],
-    pets: ['DOG', 'CAT', 'RABBIT'],
+    cities: ['Jakarta', 'Surabaya', 'Semarang'],
+    pets: ['Dog, Cat, Rabbit', 'Dog, Rabbit', 'Dog, Cat', 'Rabbit, Cat', 'Dog', 'Cat', 'Rabbit'],
   };
 
   return (
@@ -63,13 +76,21 @@ export default async function Page() {
                   <td>{branch.branchAddress}</td>
                   <td>{branch.pets}</td>
                   <td className='flex flex-row gap-2'>
-                    {/* <Link href={`/dashboard/branch/${branch.id}`} className='btn btn-accent mx-1'>
+                    <Link href={`/dashboard/branch/${userId}/${branch.id}`} className='btn btn-accent mx-1'>
                       Show
+<<<<<<<<< Temporary merge branch 1
                     </Link> */}
                     <label htmlFor={'edit-branch' + branch.id} className='btn btn-primary mx-1'>
                       Edit
                     </label>
                     <ModalBranch modalId={'edit-branch' + branch.id} branch={branch} isEdit={true} config={config} />
+=========
+                    </Link>
+                    <label htmlFor='edit-branch' className='btn btn-primary mx-1'>
+                      Edit
+                    </label>
+                    <ModalBranch modalId={'edit-branch'} branch={branch.id} isEdit={true} config={config} />
+>>>>>>>>> Temporary merge branch 2
                     <DeleteButton id={branch.id} type={'branch'} />
                   </td>
                 </tr>
