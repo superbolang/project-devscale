@@ -7,7 +7,9 @@ async function getBranch() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/branch`, {
     cache: 'no-store',
   });
-  const { _, data } = await res.json();
+
+  const { data } = await res.json();
+
   return data;
 }
 
@@ -80,10 +82,10 @@ export default async function Page({ searchParams }) {
                     <Link href={`/dashboard/branch/${userId}/${branch.id}`} className='btn btn-accent mx-1'>
                       Show
                     </Link>
-                    <label htmlFor='edit-branch' className='btn btn-primary mx-1'>
+                    <label htmlFor={'edit-branch' + branch.id} className='btn btn-primary mx-1'>
                       Edit
                     </label>
-                    <ModalBranch modalId={'edit-branch'} branch={branch.id} isEdit={true} config={config} />
+                    <ModalBranch modalId={'edit-branch' + branch.id} branch={branch} isEdit={true} config={config} />
                     <DeleteButton id={branch.id} type={'branch'} />
                   </td>
                 </tr>
