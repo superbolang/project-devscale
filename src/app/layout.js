@@ -1,5 +1,8 @@
 import { Inter } from 'next/font/google';
 import '@/styles//globals.css';
+import jwt from 'jsonwebtoken';
+import { cookies } from 'next/headers';
+import { Navbar } from '@/components/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -10,9 +13,24 @@ export const metadata = {
 
 export const dynamic = 'force-dynamic';
 export default function RootLayout({ children }) {
+  const cookieStore = cookies();
+
+  // 1. Cek apakah ada  token di cookies
+  const token = cookieStore.get('token');
+
+  let decodeData = undefined;
+  if (token != undefined) {
+    jwt.verify(token.value, 'thisissecretkey');
+
+    decodeData = jwt.decode(token.value);
+  }
+  
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Navbar isAdmin={decodeData?.role === 'ADMIN'} name={decodeData?.name} id={decodeData?.id} />
+        {children}
+      </body>
     </html>
   );
 }

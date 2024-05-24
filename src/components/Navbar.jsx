@@ -25,29 +25,25 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
               <div className='flex-none hidden lg:block'>
                 <ul className='menu menu-horizontal px-1'>
                   {/* Navbar menu content here */}
-                  {!name ? (
-                    <>
-                      <li>
-                        <Link href='/#home'>Home</Link>
-                      </li>
-                      <li>
-                        <Link href='/#service-type'>Service</Link>
-                      </li>
-                      <li>
-                        <Link href='/branch'>Branch</Link>
-                      </li>
-                      <li>
-                        <Link href='/#review'>Review</Link>
-                      </li>
-                      <li>
-                        <Link href='/#contact'>Contact</Link>
-                      </li>
-                      <li>
-                        <Link href='/#faq'>FAQ</Link>
-                      </li>
-                    </>
-                  ) : null}
-
+                  <li>
+                    <Link href='/#home'>Home</Link>
+                  </li>
+                  <li>
+                    <Link href='/#service-type'>Service</Link>
+                  </li>
+                  <li>
+                    <Link href='/branch'>Branch</Link>
+                  </li>
+                  <li>
+                    <Link href='/#review'>Review</Link>
+                  </li>
+                  <li>
+                    <Link href='/#contact'>Contact</Link>
+                  </li>
+                  <li>
+                    <Link href='/#faq'>FAQ</Link>
+                  </li>
+          
                   {name ? (
                     <>
                       <li>
@@ -68,18 +64,7 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                                 </li>
                               </>
                             ) : null}
-                            <li>
-                              <>
-                                <Link
-                                  href={{
-                                    pathname: '/dashboard/branch',
-                                    query: { id: `${id}` },
-                                  }}
-                                >
-                                  Branch
-                                </Link>
-                              </>
-                            </li>
+
 
                             {isAdmin ? (
                               <>
@@ -106,9 +91,7 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                               <Link href={`/dashboard/profile/${id}`}>Profile</Link>
                             </li>
                             <li>
-                              <Link href='/'>
-                                <LogoutButton />
-                              </Link>
+                              <LogoutButton />
                             </li>
                           </>
                         ) : (

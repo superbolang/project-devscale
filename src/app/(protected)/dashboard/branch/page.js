@@ -7,7 +7,9 @@ async function getBranch() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/branch`, {
     cache: 'no-store',
   });
-  const { _, data } = await res.json();
+
+  const { data } = await res.json();
+
   return data;
 }
 
@@ -27,13 +29,7 @@ export default async function Page({ searchParams }) {
   const userId = searchParams.id;
   const branches = await getBranch();
 
-  const user = await getUser();
-  const selectedUser = user.filter((item) => item.id == userId);
-  console.log('ini selected user :', selectedUser[0].role);
 
-  const config = {
-    cities: ['Jakarta', 'Surabaya', 'Semarang'],
-    pets: ['Dog, Cat, Rabbit', 'Dog, Rabbit', 'Dog, Cat', 'Rabbit, Cat', 'Dog', 'Cat', 'Rabbit'],
   };
 
   return (
@@ -79,11 +75,7 @@ export default async function Page({ searchParams }) {
                   <td className='flex flex-row gap-2'>
                     <Link href={`/dashboard/branch/${userId}/${branch.id}`} className='btn btn-accent mx-1'>
                       Show
-                    </Link>
-                    <label htmlFor='edit-branch' className='btn btn-primary mx-1'>
-                      Edit
-                    </label>
-                    <ModalBranch modalId={'edit-branch'} branch={branch.id} isEdit={true} config={config} />
+
                     <DeleteButton id={branch.id} type={'branch'} />
                   </td>
                 </tr>
