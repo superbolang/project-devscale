@@ -18,14 +18,17 @@ export default function RootLayout({ children }) {
   // 1. Cek apakah ada  token di cookies
   const token = cookieStore.get('token');
 
-  jwt.verify(token.value, 'thisissecretkey');
+  let decodeData = undefined;
+  if (token != undefined) {
+    jwt.verify(token.value, 'thisissecretkey');
 
-  const decodeData = jwt.decode(token.value);
-
+    decodeData = jwt.decode(token.value);
+  }
+  
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <Navbar isAdmin={decodeData.role === 'ADMIN'} name={decodeData.name} id={decodeData.id} />
+        <Navbar isAdmin={decodeData?.role === 'ADMIN'} name={decodeData?.name} id={decodeData?.id} />
         {children}
       </body>
     </html>

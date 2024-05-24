@@ -57,9 +57,6 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                                 </li>
                               </>
                             ) : null}
-                            <li>
-                              <Link href='/dashboard/branch'>Branch</Link>
-                            </li>
 
                             {isAdmin ? (
                               <>
@@ -86,9 +83,7 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                               <Link href={`/dashboard/profile/${id}`}>Profile</Link>
                             </li>
                             <li>
-                              <Link href='/'>
-                                <LogoutButton />
-                              </Link>
+                              <LogoutButton />
                             </li>
                           </>
                         ) : (
