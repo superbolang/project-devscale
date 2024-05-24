@@ -29,9 +29,6 @@ export default async function Page({ searchParams }) {
   const userId = searchParams.id;
   const branches = await getBranch();
 
-  const user = await getUser();
-  const selectedUser = user.filter((item) => item.id == userId);
-  console.log('ini selected user :', selectedUser[0].role);
 
   const config = {
     cities: ['Jakarta', 'Surabaya', 'Semarang'],
@@ -81,11 +78,19 @@ export default async function Page({ searchParams }) {
                   <td className='flex flex-row gap-2'>
                     <Link href={`/dashboard/branch/${userId}/${branch.id}`} className='btn btn-accent mx-1'>
                       Show
-                    </Link>
+<<<<<<<<< Temporary merge branch 1
+                    </Link> */}
                     <label htmlFor={'edit-branch' + branch.id} className='btn btn-primary mx-1'>
                       Edit
                     </label>
                     <ModalBranch modalId={'edit-branch' + branch.id} branch={branch} isEdit={true} config={config} />
+=========
+                    </Link>
+                    <label htmlFor='edit-branch' className='btn btn-primary mx-1'>
+                      Edit
+                    </label>
+                    <ModalBranch modalId={'edit-branch'} branch={branch.id} isEdit={true} config={config} />
+>>>>>>>>> Temporary merge branch 2
                     <DeleteButton id={branch.id} type={'branch'} />
                   </td>
                 </tr>

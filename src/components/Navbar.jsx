@@ -64,9 +64,6 @@ export const Navbar = ({ isAdmin, name, children, id }) => {
                                 </li>
                               </>
                             ) : null}
-                            <li>
-                              <Link href='/dashboard/branch'>Branch</Link>
-                            </li>
 
                             {isAdmin ? (
                               <>
