@@ -7,17 +7,21 @@ async function getBranch() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/branch`, {
     cache: 'no-store',
   });
-  const { _, data } = await res.json();
-  return data;
+
+  //const { data } = await res.json();
+
+ // console.log(data)
+
+  return [];
 }
 
 export default async function Page() {
   const branches = await getBranch();
   // console.log('Daftar branch :', branches);
 
-  const serverRuntimeConfig = {
-    cities: ['Jakarta', 'Surabaya', 'Semarang'],
-    pets: ['Dog, Cat, Rabbit', 'Dog, Rabbit', 'Dog, Cat', 'Rabbit, Cat', 'Dog', 'Cat', 'Rabbit'],
+  const config = {
+    cities: ['JAKARTA', 'SURABAYA', 'SEMARANG'],
+    pets: ['DOG', 'CAT', 'RABBIT'],
   };
 
   return (
@@ -36,7 +40,7 @@ export default async function Page() {
         <label htmlFor='add-branch' className='btn mb-3'>
           Add Branch
         </label>
-        <ModalBranch modalId={'add-branch'} config={serverRuntimeConfig} />
+        <ModalBranch modalId={'add-branch'} config={config} />
       </div>
       <div className='overflow-x-auto h-screen sticky'>
         <table className='table table-xs table-pin-rows table-pin-cols'>
@@ -67,7 +71,7 @@ export default async function Page() {
                     <label htmlFor='edit-branch' className='btn btn-primary mx-1'>
                       Edit
                     </label>
-                    <ModalBranch modalId={'edit-branch'} branch={branch.id} isEdit={true} config={serverRuntimeConfig} />
+                    <ModalBranch modalId={'edit-branch'} branch={branch.id} isEdit={true} config={config} />
                     <DeleteButton id={branch.id} type={'branch'} />
                   </td>
                 </tr>
