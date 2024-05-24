@@ -8,11 +8,9 @@ async function getBranch() {
     cache: 'no-store',
   });
 
-  //const { data } = await res.json();
+  const { data } = await res.json();
 
- // console.log(data)
-
-  return [];
+  return data;
 }
 
 export default async function Page() {
@@ -63,15 +61,15 @@ export default async function Page() {
                   <td>{branch.branchName}</td>
                   <td>{branch.branchCity}</td>
                   <td>{branch.branchAddress}</td>
-                  <td>{branch.branchPets}</td>
+                  <td>{branch.pets}</td>
                   <td className='flex flex-row gap-2'>
                     {/* <Link href={`/dashboard/branch/${branch.id}`} className='btn btn-accent mx-1'>
                       Show
                     </Link> */}
-                    <label htmlFor='edit-branch' className='btn btn-primary mx-1'>
+                    <label htmlFor={'edit-branch' + branch.id} className='btn btn-primary mx-1'>
                       Edit
                     </label>
-                    <ModalBranch modalId={'edit-branch'} branch={branch.id} isEdit={true} config={config} />
+                    <ModalBranch modalId={'edit-branch' + branch.id} branch={branch} isEdit={true} config={config} />
                     <DeleteButton id={branch.id} type={'branch'} />
                   </td>
                 </tr>
