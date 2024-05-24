@@ -1,11 +1,9 @@
-import { Navbar } from '@/components/Navbar';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Page() {
   return (
     <>
-      <Navbar />
       <div>
         <div className='hero h-[300px]' style={{ backgroundImage: 'url(/images/banner-branch.jpg)' }}>
           <div className='hero-overlay bg-opacity-60'></div>
