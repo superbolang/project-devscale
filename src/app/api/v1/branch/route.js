@@ -2,10 +2,25 @@ import { prisma } from '@/utils/prisma';
 export const dynamic = 'force-dynamic';
 import { nanoid } from 'nanoid';
 
-export async function GET() {
-  const allBranch = await prisma.branch.findMany();
+export async function GET(request) {
+  const { searchParams } = new URL(request.url)
 
-  return Response.json({ message: 'Get all branch success', data: allBranch }, { status: 200 });
+  const city = searchParams.get('city');
+
+  let allBranch;
+  if (city != "") {
+    allBranch = prisma.branch.findMany({
+      where: {
+        branchCity: {
+          equals: city
+        }
+      }
+    });
+  } else {
+    allBranch = prisma.branch.findMany();
+  }
+
+  return Response.json({ message: 'Get all branch success', data: await allBranch }, { status: 200 });
 }
 
 export async function POST(req) {

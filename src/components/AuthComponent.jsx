@@ -14,7 +14,13 @@ export default function AuthComponent({ isLogin }) {
     });
     const data = await res.json();
     console.log(data);
-    router.push('/dashboard');
+
+    if (data.role == "USER") {
+      router.push('/dashboard/myorders');
+    } else {
+      router.push('/dashboard/orders');
+    }
+
     router.refresh();
   }
 
