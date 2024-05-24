@@ -13,19 +13,19 @@ export default function Reservation({ isReservation }) {
     {
       id: 1,
       name: 'Basic',
-      price: 50000,
+      price: 100000,
       includeService: ['Boarding Accommodations', 'Feeding and Hydration'],
     },
     {
       id: 2,
       name: 'Extra',
-      price: 750000,
+      price: 150000,
       includeService: ['Boarding Accommodations', 'Feeding and Hydration', 'Exercise and Playtime'],
     },
     {
       id: 3,
       name: 'Super',
-      price: 150000,
+      price: 350000,
       includeService: ['Boarding Accommodations', 'Feeding and Hydration', 'Exercise and Playtime', 'Grooming Services'],
     },
   ];
@@ -40,13 +40,19 @@ export default function Reservation({ isReservation }) {
       <form>
         <label className='form-control w-full max-w-xs'>
           <div className='label'>
-            <span className='label-text'>What is your Pet Name?</span>
+            <span className='label-text'>What is your pet name ?</span>
           </div>
           <input name='pet_name' required type='text' placeholder='Type here' className='input input-bordered w-full max-w-xs' />
         </label>
         <label className='form-control w-full max-w-xs'>
           <div className='label'>
-            <span className='label-text'>Pick your Pet Type</span>
+            <span className='label-text'>Number of pets</span>
+          </div>
+          <input name='pet_number' required type='text' placeholder='Type here' className='input input-bordered w-full max-w-xs' />
+        </label>
+        <label className='form-control w-full max-w-xs'>
+          <div className='label'>
+            <span className='label-text'>Pick you pet type</span>
           </div>
           <select required defaultValue={'Pick one'} name='pet_type' className='select select-bordered'>
             <option disabled>Pick one</option>
@@ -55,15 +61,15 @@ export default function Reservation({ isReservation }) {
             <option value='Rabbit'>Rabbit</option>
           </select>
         </label>
-        <label className='form-control w-full max-w-xs'>
+        {/* <label className='form-control w-full max-w-xs'>
           <div className='label'>
             <span className='label-text'>Insert Pet Picture</span>
           </div>
           <input type='file' name='pet_image' required className='file-input file-input-bordered w-full max-w-xs' />
-        </label>
+        </label> */}
         <label className='form-control w-full max-w-xs'>
           <div className='label'>
-            <span className='label-text'>Pick your Package</span>
+            <span className='label-text'>Pick your package</span>
           </div>
           <select required defaultValue={'Pick one'} name='package' className='select select-bordered'>
             <option disabled>Pick one</option>
@@ -84,7 +90,7 @@ export default function Reservation({ isReservation }) {
         </label>
         <label className='form-control w-full max-w-xs '>
           <div className='label'>
-            <span className='label-text'>Special Treatment</span>
+            <span className='label-text'>Special treatment for your pet</span>
           </div>
           <textarea className='textarea textarea-bordered h-24 w-full max-w-xs' name='special_treatment' placeholder='Let us know'></textarea>
         </label>

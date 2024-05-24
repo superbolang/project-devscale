@@ -11,11 +11,27 @@ async function getBranch() {
   return data;
 }
 
-export default async function Page() {
-  const branches = await getBranch();
-  // console.log('Daftar branch :', branches);
+async function getUser() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user`, {
+    cache: 'no-store',
+  });
+  const { _, data } = await res.json();
+  return data;
+}
 
-  const serverRuntimeConfig = {
+Page.getInitialProps = ({ query: { id } }) => {
+  return { id };
+};
+
+export default async function Page({ searchParams }) {
+  const userId = searchParams.id;
+  const branches = await getBranch();
+
+  const user = await getUser();
+  const selectedUser = user.filter((item) => item.id == userId);
+  console.log('ini selected user :', selectedUser[0].role);
+
+  const config = {
     cities: ['Jakarta', 'Surabaya', 'Semarang'],
     pets: ['Dog, Cat, Rabbit', 'Dog, Rabbit', 'Dog, Cat', 'Rabbit, Cat', 'Dog', 'Cat', 'Rabbit'],
   };
@@ -36,7 +52,7 @@ export default async function Page() {
         <label htmlFor='add-branch' className='btn mb-3'>
           Add Branch
         </label>
-        <ModalBranch modalId={'add-branch'} config={serverRuntimeConfig} />
+        <ModalBranch modalId={'add-branch'} config={config} />
       </div>
       <div className='overflow-x-auto h-screen sticky'>
         <table className='table table-xs table-pin-rows table-pin-cols'>
@@ -59,15 +75,15 @@ export default async function Page() {
                   <td>{branch.branchName}</td>
                   <td>{branch.branchCity}</td>
                   <td>{branch.branchAddress}</td>
-                  <td>{branch.branchPets}</td>
+                  <td>{branch.pets}</td>
                   <td className='flex flex-row gap-2'>
-                    {/* <Link href={`/dashboard/branch/${branch.id}`} className='btn btn-accent mx-1'>
+                    <Link href={`/dashboard/branch/${userId}/${branch.id}`} className='btn btn-accent mx-1'>
                       Show
-                    </Link> */}
+                    </Link>
                     <label htmlFor='edit-branch' className='btn btn-primary mx-1'>
                       Edit
                     </label>
-                    <ModalBranch modalId={'edit-branch'} branch={branch.id} isEdit={true} config={serverRuntimeConfig} />
+                    <ModalBranch modalId={'edit-branch'} branch={branch.id} isEdit={true} config={config} />
                     <DeleteButton id={branch.id} type={'branch'} />
                   </td>
                 </tr>

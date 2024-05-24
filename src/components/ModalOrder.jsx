@@ -16,7 +16,7 @@ export default function ModalOrder({ isEdit, modalId }) {
     {
       id: 1,
       name: 'Basic',
-      price: 50000,
+      price: 100000,
       includeService: ['Boarding Accommodations', 'Feeding and Hydration'],
     },
     {

@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Reservation } from '@/components/Reservation';
+import Reservation from '@/components/Reservation';
 import Image from 'next/image';
 
-export function BranchDetail({ branch }) {
+export default function BranchDetail({ branch }) {
   const [isReservation, setIsReservation] = useState(false);
 
   async function handleClick() {
@@ -15,7 +15,7 @@ export function BranchDetail({ branch }) {
     <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
       <Image src='/images/branch.jpg' className='card rounded-box w-[500px] justify-self-center' alt='' width={500} height={500} />
       <div>
-        <h1 className='text-2xl font-bold'>{branch.name}</h1>
+        <h1 className='text-2xl font-bold'>{branch.branchName}</h1>
         <div className='indicator mt-3'>
           <div className='indicator-item indicator-bottom'>
             <button className='btn btn-primary' onClick={handleClick}>
@@ -24,8 +24,9 @@ export function BranchDetail({ branch }) {
           </div>
           <div className='card border w-[500px] bg-fuchsia-100'>
             <div className='card-body'>
-              <h2 className='card-title'>Location : Jakarta</h2>
-              <p>Address : ashjdjahsd asjdhahdj asjdhjakhsjd</p>
+              <h2 className='card-title'>Location : {branch.branchCity}</h2>
+              <p>Address : {branch.branchAddress}</p>
+              <p>Type of pet accepted : {branch.pets}</p>
             </div>
           </div>
         </div>
