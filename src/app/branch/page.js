@@ -1,7 +1,21 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Page() {
+export default async function Page({searchParams}) {
+  const config = {
+    cities: ['Jakarta', 'Surabaya', 'Semarang'],
+    pets: ['Dog, Cat, Rabbit', 'Dog, Rabbit', 'Dog, Cat', 'Rabbit, Cat', 'Dog', 'Cat', 'Rabbit'],
+  };
+
+  const {city} = searchParams
+
+  const req = await fetch(process.env.NEXT_PUBLIC_BASE_API_URL + '/api/v1/branch?city=' + (city ?? '') , {
+    method: 'GET',
+  }, { cache: 'no-store' })
+
+  const {data} = await req.json()
+
   return (
     <>
       <div>
@@ -12,15 +26,17 @@ export default function Page() {
               <h1 className='mb-5 text-5xl font-bold text-base-700'>Search Branch</h1>
               <form className='flex justify-center gap-2'>
                 <div className='form-control'>
-                  <select name='city' className='select select-bordered w-full max-w-xs'>
-                    <option disabled selected>
+                  <select name='city' defaultValue={city ?? 'Pick your City'} className='select select-bordered w-full max-w-xs'>
+                    <option disabled>
                       Pick your City
                     </option>
-                    <option>Homer</option>
-                    <option>Marge</option>
-                    <option>Bart</option>
-                    <option>Lisa</option>
-                    <option>Maggie</option>
+                    {config.cities.map(function(city, index) {
+                      return (
+                        <option key={index} value={city}>
+                          {city}
+                        </option>
+                      )
+                    })}
                   </select>
                 </div>
                 <div className='form-control'>
@@ -45,20 +61,24 @@ export default function Page() {
           </div>
           <div>
             <div className='flex flex-wrap gap-4 justify-center p-8'>
-              <div className='card card-compact w-96 bg-base-100 shadow-xl'>
-                <figure>
-                  <Image src='/images/photo.jpg' alt='Shoes' width={100} height={100} />
-                </figure>
-                <div className='card-body'>
-                  <h2 className='card-title'>Branch Name</h2>
-                  <p>City</p>
-                  <div className='card-actions justify-end'>
-                    <Link className='btn btn-primary' href='/branch/branch-slug'>
-                      More
-                    </Link>
+              {data.map(function(branch, index) {
+                return (
+                  <div key={index} className='card card-compact w-96 bg-base-100 shadow-xl'>
+                    <figure>
+                      <Image src='/images/branch.jpg' alt='Shoes' width={400} height={400} />
+                    </figure>
+                    <div className='card-body'>
+                      <h2 className='card-title'>{branch.branchName}</h2>
+                      <p>{branch.branchCity}</p>
+                      <div className='card-actions justify-end'>
+                        <Link className='btn btn-primary' href={'/branch/' + branch.id}>
+                          More
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                )
+              })}
             </div>
           </div>
         </div>

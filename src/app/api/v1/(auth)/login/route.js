@@ -35,7 +35,7 @@ export async function POST(req) {
 
   const generatedToken = jwt.sign(payload, 'thisissecretkey', { expiresIn: '1d' });
 
-  return new Response(JSON.stringify({ message: 'Login success' }), {
+  return new Response(JSON.stringify({ message: 'Login success', role: user.role }), {
     status: 200,
     headers: {
       'Set-Cookie': `token=${generatedToken};path=/`,

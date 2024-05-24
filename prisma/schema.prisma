@@ -24,13 +24,7 @@ model File {
 model Branch {
   id String @id @default(cuid())
   branchName String
-  branchCity CITY
+  branchCity String
   branchAddress String
   pets String
-}
-
-enum CITY {
-  Jakarta
-  Surabaya
-  Semarang
 }
