@@ -13,13 +13,33 @@ model User{
   name String
   email String @unique
   password String
+  image String?
   role String @default("USER")
-  image File?
 }
 
 model File{
-  id String @default(cuid()) @id
+  id String @default(cuid()) @unique
   key String
-  userId String? @unique
-  user User? @relation(fields: [userId], references: [id])
+  author String
+}
+
+model Branch {
+  id String @default(cuid()) @unique
+  name String
+  image String?
+  city String
+  address String
+}
+
+model Order {
+  id String @default(cuid()) @unique
+  branch_id String
+  user_id String
+  pet_name String
+  pet_type String
+  image String?
+  package String
+  start_date String
+  end_date String
+  special_treatment String
 }
