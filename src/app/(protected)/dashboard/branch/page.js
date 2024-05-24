@@ -18,8 +18,8 @@ export default async function Page() {
   // console.log('Daftar branch :', branches);
 
   const config = {
-    cities: ['JAKARTA', 'SURABAYA', 'SEMARANG'],
-    pets: ['DOG', 'CAT', 'RABBIT'],
+    cities: ['Jakarta', 'Surabaya', 'Semarang'],
+    pets: ['Dog, Cat, Rabbit', 'Dog, Rabbit', 'Dog, Cat', 'Rabbit, Cat', 'Dog', 'Cat', 'Rabbit'],
   };
 
   return (

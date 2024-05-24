@@ -26,17 +26,11 @@ model Branch {
   branchName String
   branchCity CITY
   branchAddress String
-  pets PET_CATEGORY
+  pets String
 }
 
 enum CITY {
-  JAKARTA
-  SURABAYA
-  SEMARANG
-}
-
-enum PET_CATEGORY {
-  DOG
-  CAT
-  RABBIT
+  Jakarta
+  Surabaya
+  Semarang
 }
