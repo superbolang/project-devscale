@@ -1,14 +1,20 @@
 import { prisma } from '@/utils/prisma';
 import bcrypt from 'bcrypt';
 
+function exclude(user, keys) {
+  return Object.fromEntries(
+    Object.entries(user).filter(([key]) => !keys.includes(key))
+  );
+}
+
 export async function GET(_, { params }) {
   const singleUser = await prisma.user.findUnique({
     where: {
       id: params.id,
-    },
+    }
   });
 
-  return Response.json({ message: 'Get single user success', data: singleUser }, { status: 200 });
+  return Response.json({ message: 'Get single user success', data: exclude(singleUser, "password") }, { status: 200 });
 }
 
 export async function DELETE(_, { params }) {
