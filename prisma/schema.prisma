@@ -28,6 +28,7 @@ model Order {
   start_date String
   end_date String
   special_treatment String
+  status String  @default("On Process")
 }
 
 model File {
