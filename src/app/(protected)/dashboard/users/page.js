@@ -88,10 +88,10 @@ export default async function Page() {
                       </Link>
                       {user.role === 'ADMIN' ? null : (
                         <>
-                          <label htmlFor='edit-user' className='btn btn-primary mx-1'>
+                          <label htmlFor={'edit-user' + user.id} className='btn btn-primary mx-1'>
                             Edit
                           </label>
-                          <ModalUser modalId={'edit-user'} isEdit={true} id={user.id} />
+                          <ModalUser modalId={'edit-user' + user.id} isEdit={true} id={user.id} />
                           <DeleteButton id={user.id} type={user}/>
                         </>
                       )}

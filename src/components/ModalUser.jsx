@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
-async function getData() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user`, {
+async function getData(id) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/user/${id}`, {
     cache: 'no-store',
   });
   const { _, data } = await res.json();
@@ -21,7 +21,7 @@ export default async function ModalUser({ isEdit, modalId, id }) {
   // const data = await getData();
   const images = await getImage();
 
-  const user = await getData();
+  const user = await getData(id);
 
   // console.log('ini user single', user[2]);
 
@@ -89,13 +89,13 @@ export default async function ModalUser({ isEdit, modalId, id }) {
               <div className='label'>
                 <span className='label-text'>Name</span>
               </div>
-              <input type='text' name='name' placeholder={isEdit ? user[0].name : 'Type here'} className='input input-bordered w-full' required />
+              <input type='text' name='name' placeholder={'Type here'} defaultValue={user?.name} className='input input-bordered w-full' required />
             </label>
             <label className='form-control w-full'>
               <div className='label'>
                 <span className='label-text'>Email</span>
               </div>
-              <input type='email' name='email' placeholder={isEdit ? user[0].email : 'Type here'} className='input input-bordered w-full' required />
+              <input type='email' name='email' placeholder={'Type here'} defaultValue={user?.email} className='input input-bordered w-full' required />
             </label>
             <label className='form-control w-full'>
               <div className='label'>
